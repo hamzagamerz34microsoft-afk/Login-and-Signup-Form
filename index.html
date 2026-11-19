@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenix | Sign up</title>
+  <meta name="description" content="Create your Zenix account or log in. Karachi's watch house since 1998." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0b0e0d;
+  --bg-2: #101513;
+  --card: #141a17;
+  --field: #0f1412;
+  --line: #2a332f;
+  --line-2: #3a463f;
+  --text: #f1ece0;
+  --muted: #9aa59e;
+  --gold: #c9a45c;
+  --gold-2: #e2c488;
+  --emerald: #1f8a67;
+  --emerald-2: #176b50;
+  --danger: #ff7a85;
+  --ok: #4fcf9f;
+  --display: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
+  --font: "Manrope", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { -webkit-text-size-adjust: 100%; color-scheme: dark; }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--gold-2); font-weight: 600; text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+:focus-visible { outline: 3px solid rgba(201, 164, 92, .55); outline-offset: 2px; }
+
+/* ---------- Layout ---------- */
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+}
+
+/* ---------- Brand panel ---------- */
+.brand {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: clamp(32px, 5vw, 64px);
+  background:
+    radial-gradient(55% 45% at 80% 12%, rgba(31, 138, 103, .32), transparent 70%),
+    radial-gradient(60% 50% at 0% 100%, rgba(201, 164, 92, .14), transparent 70%),
+    linear-gradient(165deg, #0f1613, #080a09);
+  border-right: 1px solid var(--line);
+}
+
+.brand > * { position: relative; z-index: 1; }
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold-2);
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.logo:hover { text-decoration: none; }
+
+.since { margin-bottom: 14px; color: var(--gold); font-weight: 600; font-size: .92rem; }
+
+.brand h1 {
+  max-width: 12ch;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.01em;
+  text-wrap: balance;
+}
+
+.lead { margin-top: 20px; max-width: 42ch; color: #c4ccc7; font-size: 1.05rem; }
+
+.perks { list-style: none; padding: 0; margin-top: 30px; display: grid; gap: 14px; }
+.perks li { display: flex; align-items: center; gap: 12px; font-weight: 600; color: #e6e2d6; }
+.perks svg {
+  flex: none;
+  width: 24px; height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  color: #0b0e0d;
+  background: var(--gold);
+}
+
+.quote {
+  max-width: 440px;
+  padding: 22px 24px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+.quote blockquote { font-family: var(--display); font-size: 1.3rem; font-weight: 500; line-height: 1.4; }
+.quote figcaption { display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: .85rem; color: var(--muted); }
+.quote strong { color: var(--text); font-weight: 700; }
+.avatar {
+  display: grid; place-items: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--emerald);
+  color: #fff;
+  font-weight: 700; font-size: .85rem;
+}
+
+/* ---------- Form panel ---------- */
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: clamp(24px, 4vw, 56px);
+  background: var(--bg);
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  padding: clamp(24px, 4vw, 40px);
+  background: var(--card);
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+/* tabs */
+.tabs {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  background: var(--field);
+  border: 1px solid var(--line);
+}
+.tab {
+  position: relative;
+  z-index: 1;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  font: 700 .95rem var(--font);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .2s;
+}
+.tab[aria-selected="true"] { color: #0b0e0d; }
+.tab-pill {
+  position: absolute;
+  top: 5px; bottom: 5px; left: 5px;
+  width: calc(50% - 5px);
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--gold-2), var(--gold));
+  transition: transform .25s ease;
+}
+.tabs[data-active="login"] .tab-pill { transform: translateX(100%); }
+
+h2 { font-family: var(--display); font-size: 2.1rem; font-weight: 600; line-height: 1.1; }
+.sub { margin: 8px 0 26px; color: var(--muted); font-size: .97rem; }
+
+/* fields */
+.field { margin-bottom: 18px; }
+label { display: block; margin-bottom: 7px; font-size: .875rem; font-weight: 700; color: #ddd8cb; }
+.label-row { display: flex; justify-content: space-between; align-items: baseline; }
+.forgot { font-size: .82rem; }
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  font: 500 .97rem var(--font);
+  color: var(--text);
+  background: var(--field);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  transition: border-color .15s, box-shadow .15s;
+}
+input::placeholder { color: #5f6b64; }
+input:hover { border-color: var(--line-2); }
+input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201, 164, 92, .16);
+}
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text);
+  -webkit-box-shadow: 0 0 0 40px var(--field) inset;
+}
+.field.invalid input { border-color: var(--danger); }
+.field.invalid input:focus { box-shadow: 0 0 0 4px rgba(255, 122, 133, .15); }
+
+.error { display: none; margin-top: 6px; font-size: .82rem; font-weight: 600; color: var(--danger); }
+.field.invalid .error { display: block; }
+.field.invalid .hint { display: none; }
+.hint { margin-top: 8px; font-size: .8rem; color: var(--muted); }
+
+/* password */
+.pw { position: relative; }
+.pw input { padding-right: 48px; }
+.eye {
+  position: absolute;
+  top: 50%; right: 6px;
+  transform: translateY(-50%);
+  width: 38px; height: 38px;
+  border: 0; border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--muted);
+  display: grid; place-items: center;
+}
+.eye:hover { background: rgba(255, 255, 255, .06); color: var(--text); }
+.eye::before {
+  content: "";
+  width: 20px; height: 20px;
+  background: currentColor;
+  -webkit-mask: var(--eye) center / contain no-repeat;
+          mask: var(--eye) center / contain no-repeat;
+  --eye: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+}
+.eye[aria-pressed="true"]::before {
+  --eye: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.9 17.9A10.1 10.1 0 0 1 12 19c-6.4 0-10-7-10-7a18.5 18.5 0 0 1 5.1-5.9M9.9 4.2A9.8 9.8 0 0 1 12 4c6.4 0 10 7 10 7a18.6 18.6 0 0 1-2.2 3.2M1 1l22 22'/%3E%3C/svg%3E");
+}
+
+/* strength meter */
+.meter { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 10px; }
+.meter span { height: 4px; border-radius: 4px; background: #232c27; transition: background .2s; }
+.meter[data-level="1"] span:nth-child(-n+1) { background: var(--danger); }
+.meter[data-level="2"] span:nth-child(-n+2) { background: #e8a93a; }
+.meter[data-level="3"] span:nth-child(-n+3) { background: var(--gold-2); }
+.meter[data-level="4"] span:nth-child(-n+4) { background: var(--ok); }
+
+/* checkbox */
+.check { display: flex; align-items: center; gap: 10px; margin: 2px 0 22px; font-weight: 500; font-size: .9rem; color: var(--muted); cursor: pointer; }
+.check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.check .box {
+  flex: none;
+  width: 20px; height: 20px;
+  border: 1.5px solid var(--line-2);
+  border-radius: 6px;
+  background: var(--field);
+  display: grid; place-items: center;
+  transition: background .15s, border-color .15s;
+}
+.check .box::after {
+  content: "";
+  width: 10px; height: 6px;
+  border-left: 2.5px solid #0b0e0d;
+  border-bottom: 2.5px solid #0b0e0d;
+  transform: rotate(-45deg) translate(1px, -1px) scale(0);
+  transition: transform .15s;
+}
+.check input:checked + .box { background: var(--gold); border-color: var(--gold); }
+.check input:checked + .box::after { transform: rotate(-45deg) translate(1px, -1px) scale(1); }
+.check input:focus-visible + .box { outline: 3px solid rgba(201, 164, 92, .55); outline-offset: 2px; }
+
+/* main button */
+.cta {
+  position: relative;
+  width: 100%;
+  height: 52px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 12px;
+  font: 800 1rem var(--font);
+  color: #0b0e0d;
+  background: linear-gradient(180deg, var(--gold-2), var(--gold));
+  box-shadow: 0 12px 26px -12px rgba(201, 164, 92, .7), inset 0 1px 0 rgba(255, 255, 255, .35);
+  cursor: pointer;
+  transition: transform .12s, filter .2s;
+}
+.cta:hover { filter: brightness(1.07); }
+.cta:active { transform: translateY(1px); }
+.cta[disabled] { cursor: progress; filter: none; }
+
+.spinner {
+  display: none;
+  position: absolute; inset: 0; margin: auto;
+  width: 22px; height: 22px;
+  border: 3px solid rgba(11, 14, 13, .25);
+  border-top-color: #0b0e0d;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+.cta.loading .cta-label { visibility: hidden; }
+.cta.loading .spinner { display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.switch { margin-top: 22px; text-align: center; font-size: .92rem; color: var(--muted); }
+
+.legal {
+  margin-top: 26px; padding-top: 20px;
+  border-top: 1px solid var(--line);
+  text-align: center; font-size: .78rem; color: var(--muted);
+}
+
+.credit { font-size: .82rem; color: var(--muted); text-align: center; }
+.credit strong { color: var(--gold-2); font-weight: 700; letter-spacing: .01em; }
+
+/* both views share one height so Sign up and Log in look identical */
+.view { display: flex; flex-direction: column; min-height: var(--view-h, 0); }
+.view[hidden] { display: none; }
+.view form { flex: 1; display: flex; flex-direction: column; }
+.view .cta { margin-top: auto; }
+.view .check + .cta, .view .field + .cta { margin-top: auto; }
+.view form::after { content: none; }
+.view:not([hidden]) { animation: swap .28s ease; }
+@keyframes swap { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* toast */
+.toast {
+  position: fixed;
+  left: 50%; bottom: 28px;
+  transform: translate(-50%, 24px);
+  max-width: calc(100% - 32px);
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: #1b2420;
+  border: 1px solid var(--gold);
+  color: var(--text);
+  font-weight: 600; font-size: .93rem;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .8);
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s, transform .25s;
+  z-index: 10;
+}
+.toast::before { content: "✓"; display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 10px; border-radius: 50%; background: var(--gold); color: #0b0e0d; font-size: .8rem; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 920px) {
+  .shell { grid-template-columns: 1fr; }
+  .brand { position: relative; height: auto; min-height: 0; gap: 24px; padding: 28px 24px 36px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .brand h1 { max-width: none; font-size: 2.6rem; }
+  .perks { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+  .quote { display: block; max-width: none; padding: 16px 18px; }
+  .quote blockquote { font-size: 1.15rem; }
+  .lead { margin-top: 12px; }
+  .panel { padding: 24px 16px 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+    /* React version: keep the same Zenix brand panel on both screens. */
+    .brand-body { display: block; }
+    .perks { display: grid; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React runs directly in this HTML file; no separate CSS or JS files required. -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [mode, setMode] = useState(location.hash === "#login" ? "login" : "signup");
+      const [showPassword, setShowPassword] = useState({});
+      const [toast, setToast] = useState("");
+      const [values, setValues] = useState({
+        name: "", username: "", signupEmail: "", signupPassword: "",
+        confirmPassword: "", loginEmail: "", loginPassword: ""
+      });
+      const [errors, setErrors] = useState({});
+
+      const update = (key, value) => {
+        setValues(old => ({ ...old, [key]: value }));
+        setErrors(old => ({ ...old, [key]: "" }));
+      };
+
+      const usernameValid = value => /^[A-Za-z][A-Za-z0-9_]{5,10}$/.test(value);
+      const emailValid = value => /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value);
+
+      const passwordScore = (() => {
+        const value = values.signupPassword;
+        if (!value) return 0;
+        let score = 0;
+        if (value.length >= 6) score++;
+        if (value.length >= 10) score++;
+        if (/[A-Z]/.test(value) && /[a-z]/.test(value) && /\\d/.test(value)) score++;
+        if (/[^A-Za-z0-9]/.test(value)) score++;
+        return score;
+      })();
+
+      function notify(message) {
+        setToast(message);
+        window.clearTimeout(window.zenixToastTimer);
+        window.zenixToastTimer = window.setTimeout(() => setToast(""), 3200);
+      }
+
+      function switchMode(next) {
+        setMode(next);
+        setErrors({});
+        history.replaceState(null, "", next === "login" ? "#login" : "#signup");
+        document.title = "Zenix | " + (next === "login" ? "Log in" : "Sign up");
+      }
+
+      function submitSignup(event) {
+        event.preventDefault();
+        const next = {};
+        if (!values.name.trim()) next.name = "Enter your full name.";
+        if (!values.username.trim()) next.username = "Choose a username.";
+        else if (!usernameValid(values.username.trim())) next.username = "Use 6 to 11 characters, starting with a letter. Letters, numbers and _ only.";
+        if (!values.signupEmail.trim()) next.signupEmail = "Enter your email address.";
+        else if (!emailValid(values.signupEmail.trim())) next.signupEmail = "Enter a valid email, like you@example.com.";
+        if (!values.signupPassword) next.signupPassword = "Create a password.";
+        else if (values.signupPassword.length < 6) next.signupPassword = "Password must be at least 6 characters.";
+        if (!values.confirmPassword) next.confirmPassword = "Re-enter your password.";
+        else if (values.confirmPassword !== values.signupPassword) next.confirmPassword = "Passwords don't match.";
+        setErrors(next);
+        if (Object.keys(next).length) return;
+        notify("Account created. Welcome to Zenix!");
+        setValues(old => ({ ...old, name:"", username:"", signupEmail:"", signupPassword:"", confirmPassword:"" }));
+      }
+
+      function submitLogin(event) {
+        event.preventDefault();
+        const next = {};
+        if (!values.loginEmail.trim()) next.loginEmail = "Enter your email address.";
+        else if (!emailValid(values.loginEmail.trim())) next.loginEmail = "Enter a valid email, like you@example.com.";
+        if (!values.loginPassword) next.loginPassword = "Enter your password.";
+        setErrors(next);
+        if (Object.keys(next).length) return;
+        notify("Logged in. Welcome back to Zenix.");
+        setValues(old => ({ ...old, loginEmail:"", loginPassword:"" }));
+      }
+
+      function field(key, label, placeholder, type="text", autoComplete="off", extra={}) {
+        const password = type === "password";
+        const visible = !!showPassword[key];
+        return <div className="field">
+          <label htmlFor={key}>{label}</label>
+          <div className={password ? "pw" : ""}>
+            <input id={key} type={password && visible ? "text" : type}
+              value={values[key]} placeholder={placeholder} autoComplete={autoComplete}
+              maxLength={extra.maxLength}
+              onChange={e => update(key, e.target.value)} />
+            {password && <button type="button" className="eye"
+              aria-label={visible ? "Hide password" : "Show password"}
+              aria-pressed={visible}
+              onClick={() => setShowPassword(old => ({ ...old, [key]: !old[key] }))}></button>}
+          </div>
+          {key === "username" && <p className="hint">6 to 11 characters. Start with a letter, then use letters, numbers or underscores.</p>}
+          {key === "signupPassword" && <>
+            <div className="meter" data-level={passwordScore} aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            <p className="hint">{!values.signupPassword ? "Use 6 or more characters. Add numbers and symbols to strengthen it." :
+              ["", "Weak. Try a longer password.", "Fair. Add numbers or symbols.", "Good. Almost there.", "Strong password."][Math.max(passwordScore,1)]}</p>
+          </>}
+          {errors[key] && <p className="error">{errors[key]}</p>}
+        </div>;
+      }
+
+      return <main className="shell">
+        <aside className="brand" aria-label="About Zenix Watch Company">
+          <div className="brand-top">
+            <a className="logo" href="#" aria-label="Zenix home">
+              <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" strokeWidth="1.6"/>
+                <circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" strokeWidth=".8" opacity=".5"/>
+                <path d="M16 7.5V16l5.5 3.2" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>Zenix</span>
+            </a>
+          </div>
+          <div className="brand-body">
+            <p className="since">Karachi&rsquo;s watch house since 1998</p>
+            <h1>Fine watches. Honest repair.</h1>
+            <p className="lead">Create an account to track your repairs, save your favourite watches and book a free inspection.</p>
+            <ul className="perks">
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>Free inspection at every store</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>2 year service warranty</li>
+              <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>Delivery across Pakistan</li>
+            </ul>
+          </div>
+        </aside>
+
+        <section className="panel">
+          <div className="card">
+            <div className="tabs" data-active={mode} role="tablist" aria-label="Account">
+              <button className="tab" role="tab" aria-selected={mode === "signup"} type="button" onClick={() => switchMode("signup")}>Sign up</button>
+              <button className="tab" role="tab" aria-selected={mode === "login"} type="button" onClick={() => switchMode("login")}>Log in</button>
+              <span className="tab-pill" aria-hidden="true"></span>
+            </div>
+
+            {mode === "signup" ? <div className="view">
+              <h2>Create your account</h2>
+              <p className="sub">Track repairs and book free inspections. It takes less than a minute.</p>
+              <form onSubmit={submitSignup} noValidate>
+                {field("name", "Full name", "Hamza Ahmed", "text", "name")}
+                {field("username", "Username", "hamza_ahmed", "text", "username", {maxLength:11})}
+                {field("signupEmail", "Email", "you@example.com", "email", "email")}
+                {field("signupPassword", "Password", "At least 6 characters", "password", "new-password")}
+                {field("confirmPassword", "Confirm password", "Re-enter your password", "password", "new-password")}
+                <button type="submit" className="cta"><span className="cta-label">Create account</span></button>
+              </form>
+              <p className="switch">Already have an account? <a href="#login" onClick={e => {e.preventDefault(); switchMode("login");}}>Log in</a></p>
+            </div> : <div className="view">
+              <h2>Welcome back</h2>
+              <p className="sub">Log in to see your repairs and saved watches.</p>
+              <form onSubmit={submitLogin} noValidate>
+                {field("loginEmail", "Email", "you@example.com", "email", "email")}
+                <div className="field">
+                  <div className="label-row"><label htmlFor="loginPassword">Password</label><a href="#" className="forgot" onClick={e => {e.preventDefault(); notify("Please contact a Zenix store for password assistance.");}}>Forgot password?</a></div>
+                  <div className="pw">
+                    <input id="loginPassword" type={showPassword.loginPassword ? "text" : "password"}
+                      value={values.loginPassword} placeholder="Enter your password" autoComplete="current-password"
+                      onChange={e => update("loginPassword", e.target.value)} />
+                    <button type="button" className="eye" aria-label={showPassword.loginPassword ? "Hide password" : "Show password"}
+                      aria-pressed={!!showPassword.loginPassword}
+                      onClick={() => setShowPassword(old => ({...old, loginPassword:!old.loginPassword}))}></button>
+                  </div>
+                  {errors.loginPassword && <p className="error">{errors.loginPassword}</p>}
+                </div>
+                <label className="check"><input type="checkbox" /><span className="box" aria-hidden="true"></span>Keep me logged in on this device</label>
+                <button type="submit" className="cta"><span className="cta-label">Log in</span></button>
+              </form>
+              <p className="switch">New to Zenix? <a href="#signup" onClick={e => {e.preventDefault(); switchMode("signup");}}>Create an account</a></p>
+            </div>}
+            <p className="legal">By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+          </div>
+          <p className="credit">Designed &amp; built by <strong>HM Creations</strong></p>
+        </section>
+        <div className={"toast " + (toast ? "show" : "")} role="status" aria-live="polite">{toast}</div>
+      </main>;
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
